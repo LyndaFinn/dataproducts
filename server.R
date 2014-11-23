@@ -5,7 +5,8 @@ library(mapproj)
 source("helperNew.R")
 
 counties <- read.table("data/DataSet.txt", header=TRUE, sep=",")
-
+#web read if desired
+#counties <- read.table("http://quickfacts.census.gov/qfd/download/DataSet.txt", header=TRUE, sep=",")
 
 #remove state and US totals
 counties<-subset(counties, fips%%1000!=0)
@@ -43,7 +44,7 @@ shinyServer(
                              "Median Income" = "Median household income, 2008-2012 by county",
                              "Below Poverty" = "Persons below poverty level, percent, 2008-2012 by county")
             
-            percent_map(var = data, 
+            heatmap(var = data, 
                         title = legend)
         })
     }
